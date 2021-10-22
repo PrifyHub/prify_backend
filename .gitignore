@@ -1,5 +1,8 @@
 pvenv/
 
+uploaded/
+anonimized/
+
 *.pyc
 __pycache__/
 
