@@ -29,9 +29,12 @@ def anonimize_file(file_name):
   data_path = os.path.join(anon_dirpath, f'{file_name}.csv')
   describe_path = os.path.join(anon_dirpath, f'{file_name}_desc.json')
 
-  epsilon = 1
-  threshold_value = 20
-  degree_of_bayesian_network = 2
+  output_size = request.args.get('sz', default = 1000, type = int)
+  epsilon = request.args.get('eps', default = 1, type = int)
+  threshold_value = request.args.get('threshold_value', default = 20, type = int)
+  degree_of_bayesian_network = request.args.get('degree', default = 2, type = int)
+
+  print(f'Running w/ parametes: size={output_size} eps={epsilon} thr={threshold_value} deg={degree_of_bayesian_network}')
 
   describer = DataDescriber(category_threshold=threshold_value)
   describer.describe_dataset_in_correlated_attribute_mode(dataset_file=os.path.join(upload_dirpath, f'{file_name}.csv'), 
@@ -39,7 +42,7 @@ def anonimize_file(file_name):
                                                         k=degree_of_bayesian_network)
   describer.save_dataset_description_to_file(describe_path)
   generator = DataGenerator()
-  generator.generate_dataset_in_correlated_attribute_mode(1000, describe_path) # resolve this params
+  generator.generate_dataset_in_correlated_attribute_mode(output_size, describe_path) # resolve this params
   generator.save_synthetic_data(data_path)
 
   return send_file(data_path, as_attachment=True)
