@@ -25,7 +25,7 @@ def index():
 
 def anonimize_file(file_name):
   upload_dirpath = os.path.join(Path(__file__).parent.parent.absolute(), 'uploaded')
-  anon_dirpath = os.path.join(Path(__file__).parent.parent.absolute(), 'anonimized')
+  anon_dirpath = os.path.join(Path(__file__).parent.parent.absolute(), 'anonymized')
   data_path = os.path.join(anon_dirpath, f'{file_name}.csv')
   describe_path = os.path.join(anon_dirpath, f'{file_name}_desc.json')
 
