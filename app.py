@@ -12,6 +12,7 @@ def init():
     Path(config.uploaded_folder).mkdir(parents=True, exist_ok=True)
         
 if __name__ == "__main__":
+    init()
     app = Flask(__name__)
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
