@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+
+  rabbit:
+    hostname: rabbit
+    image: "rabbitmq:3-management"
+    ports:
+      - "8080:15672"
+      - "5672:5672"
+
+  mongodb_container:
+    image: mongo:latest
+    ports:
+      - "27017:27017"

@@ -1,0 +1,3 @@
+Dentro da pasta /simple_worker execute:
+
+celery -A tasks worker -l info --pool=solo
