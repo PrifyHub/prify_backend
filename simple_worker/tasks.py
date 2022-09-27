@@ -1,6 +1,7 @@
 import os
 import queue
 import time
+from unittest import result
 from urllib import request
 from DataSynthesizer.DataDescriber import DataDescriber
 from DataSynthesizer.DataGenerator import DataGenerator
@@ -16,7 +17,8 @@ app = Celery('simple_worker', broker='amqp://localhost',
                             backend='mongodb://localhost:27017/mydb')
 
 
-anonymized_folder = "C:\\Users\\aglailson\\Documents\\Prify\\Versão nova\\prify_backend\\tmp\\anonymized\\"
+#anonymized_folder = "C:\\Users\\aglailson\\Documents\\Prify\\Versão nova\\prify_backend\\tmp\\anonymized\\"
+anonymized_folder = "../tmp/anonymized/"
 uploaded_folder = "../tmp/uploaded/"
 
 @app.task(bind=True)
@@ -25,6 +27,7 @@ def anonimyze_file(self, file_name):
     logger.info('Got Request - Starting work')
     #print (AsyncResult(request.id).state)
     data_path = os.path.join(anonymized_folder, f'{file_name}.csv')
+    result = "tmp\\anonymized\\" + f'{file_name}.csv'
     describe_path = os.path.join(anonymized_folder, f'{file_name}_desc.json')
 
     output_size = 1000
@@ -45,5 +48,5 @@ def anonimyze_file(self, file_name):
 
     logger.info('Work Finished')
     
-    return data_path
+    return result
         

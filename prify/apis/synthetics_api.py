@@ -58,4 +58,5 @@ class SimpleResult(Resource):
         res = simple_app.AsyncResult(task_id)
         
         #return "Result of the Task " + str(res.result)
+        data_path = os.path.join(res.result)
         return send_file(res.result, as_attachment=True)
