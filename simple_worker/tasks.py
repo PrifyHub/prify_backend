@@ -27,7 +27,7 @@ def anonimyze_file(self, file_name):
     logger.info('Got Request - Starting work')
     #print (AsyncResult(request.id).state)
     data_path = os.path.join(anonymized_folder, f'{file_name}.csv')
-    result = "tmp\\anonymized\\" + f'{file_name}.csv'
+    result = "tmp/anonymized/" + f'{file_name}.csv'
     describe_path = os.path.join(anonymized_folder, f'{file_name}_desc.json')
 
     output_size = 1000
